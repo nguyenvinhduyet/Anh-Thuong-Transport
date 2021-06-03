@@ -1,6 +1,5 @@
 <template>
   <div class="itinerary">
-    <h1>this is Itinerary Page</h1>
     <CreateItinerary/>
     <ItineraryList/>
     

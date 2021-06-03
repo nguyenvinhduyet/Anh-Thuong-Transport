@@ -1,5 +1,19 @@
 <template>
   <div>
-    <h1>This is an other truck page</h1>
+    <CreateItinerary></CreateItinerary>
+    <ItineraryOtherList />
   </div>
 </template>
+
+<script>
+import CreateItinerary from "../components/CreateItinerary.vue";
+import ItineraryOtherList from "../components/ItineraryOtherList.vue";
+export default {
+  components: {
+    CreateItinerary,
+    ItineraryOtherList,
+  },
+};
+</script>
+
+<style></style>

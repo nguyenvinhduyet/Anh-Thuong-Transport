@@ -1,9 +1,15 @@
 <template>
   <div>
       <div>
-      <el-table v-model="search"
-      :data="itinerary.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
-      style="width: 100%;">
+      <el-table
+      :data="
+        itinerary.filter(
+          (data) =>
+            data.date.toLowerCase().includes(search.toLowerCase())
+        )
+      "
+      style="width: 100%;"
+    >
 
       <el-table-column label="Ngày" prop="date"> </el-table-column>
       <el-table-column label="Thứ" prop="day"> </el-table-column>
@@ -170,96 +176,6 @@ export default {
     methods: {
     readEmployees() {
       this.itinerary = [];
-      db.collection("51C 60596")
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            this.itinerary.push({
-              id: doc.id,
-              date: doc.data().date,
-              day: doc.data().day,
-              from: doc.data().from,
-              to: doc.data().to,
-              kilometer: doc.data().kilometer,
-              trip: doc.data().trip,
-              ton: doc.data().ton,
-              oil: doc.data().oil,
-              police: doc.data().police,
-              total: doc.data().total, 
-              salary: doc.data().salary,
-              driver: doc.data().driver,
-              licensePlate: doc.data().licensePlate,
-              extraCost: doc.data().extraCost,
-              unitPrice: doc.data().unitPrice,
-              name: doc.data().name
-            });
-            console.log(doc.id, " => ", doc.data());
-          });
-        })
-        .catch((error) => {
-          console.log("Error getting documents: ", error);
-        });
-
-      db.collection("51D 46295")
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            this.itinerary.push({
-              id: doc.id,
-              date: doc.data().date,
-              day: doc.data().day,
-              from: doc.data().from,
-              to: doc.data().to,
-              kilometer: doc.data().kilometer,
-              trip: doc.data().trip,
-              ton: doc.data().ton,
-              oil: doc.data().oil,
-              police: doc.data().police,
-              total: doc.data().total, 
-              salary: doc.data().salary,
-              driver: doc.data().driver,
-              licensePlate: doc.data().licensePlate,
-              extraCost: doc.data().extraCost,
-              unitPrice: doc.data().unitPrice,
-              name: doc.data().name
-            });
-            console.log(doc.id, " => ", doc.data());
-          });
-        })
-        .catch((error) => {
-          console.log("Error getting documents: ", error);
-        });  
-      
-      db.collection("50H 07677")
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            this.itinerary.push({
-              id: doc.id,
-              date: doc.data().date,
-              day: doc.data().day,
-              from: doc.data().from,
-              to: doc.data().to,
-              kilometer: doc.data().kilometer,
-              trip: doc.data().trip,
-              ton: doc.data().ton,
-              oil: doc.data().oil,
-              police: doc.data().police,
-              total: doc.data().total, 
-              salary: doc.data().salary,
-              driver: doc.data().driver,
-              licensePlate: doc.data().licensePlate,
-              extraCost: doc.data().extraCost,
-              unitPrice: doc.data().unitPrice,
-              name: doc.data().name
-            });
-            console.log(doc.id, " => ", doc.data());
-          });
-        })
-        .catch((error) => {
-          console.log("Error getting documents: ", error);
-        });
-
       db.collection("xe ngoai")
         .get()
         .then((querySnapshot) => {
@@ -291,38 +207,7 @@ export default {
         });    
     },
 
-
     deleteEmployee(id) {   
-      db.collection("51C 60596")
-        .doc(id)
-        .delete()
-        .then(() => {
-          console.log("Document successfully deleted!");
-        })
-        .catch((error) => {
-          console.error("Error removing document: ", error);
-        });
-      
-      db.collection("50H 07677")
-        .doc(id)
-        .delete()
-        .then(() => {
-          console.log("Document successfully deleted!");
-        })
-        .catch((error) => {
-          console.error("Error removing document: ", error);
-        });
-
-      db.collection("51D 46295")
-        .doc(id)
-        .delete()
-        .then(() => {
-          console.log("Document successfully deleted!");
-        })
-        .catch((error) => {
-          console.error("Error removing document: ", error);
-        });
-
       db.collection("xe ngoai")
         .doc(id)
         .delete()
@@ -334,98 +219,9 @@ export default {
         });
       this.readEmployees();
     },
+
     updateEmployee(id, name, date, day, licensePlate, from, to , kilometer, trip, ton, unitPrice, extraCost, oil, police, total, salary, driver) {
       switch(licensePlate){
-        case "51D 46295":
-          db.collection("51D 46295")
-          .doc(id)
-          .update({
-            name: name,
-            date: date,
-            day: day,
-            licensePlate: licensePlate, 
-            from: from, 
-            to: to, 
-            kilometer: kilometer, 
-            trip: trip,
-            ton: ton, 
-            unitPrice: unitPrice, 
-            extraCost: extraCost, 
-            oil: oil, 
-            police: police, 
-            total: total, 
-            salary: salary, 
-            driver: driver
-          })
-          .then(() => {
-            console.log("Document successfully updated!");
-            this.readEmployees();
-          })
-          .catch((error) => {
-            console.error("Error updating document: ", error);
-          });
-        break;
-        
-        case "51C 60596":
-          db.collection("51C 60596")
-          .doc(id)
-          .update({
-            name: name,
-            date: date,
-            day: day,
-            licensePlate: licensePlate, 
-            from: from, 
-            to: to, 
-            kilometer: kilometer, 
-            trip: trip,
-            ton: ton, 
-            unitPrice: unitPrice, 
-            extraCost: extraCost, 
-            oil: oil, 
-            police: police, 
-            total: total, 
-            salary: salary, 
-            driver: driver
-          })
-          .then(() => {
-            console.log("Document successfully updated!");
-            this.readEmployees();
-          })
-          .catch((error) => {
-            console.error("Error updating document: ", error);
-          });
-        break;
-
-        case "50H 07677":
-          db.collection("50H 07677")
-          .doc(id)
-          .update({
-            name: name,
-            date: date,
-            day: day,
-            licensePlate: licensePlate, 
-            from: from, 
-            to: to, 
-            kilometer: kilometer, 
-            trip: trip,
-            ton: ton, 
-            unitPrice: unitPrice, 
-            extraCost: extraCost, 
-            oil: oil, 
-            police: police, 
-            total: total, 
-            salary: salary, 
-            driver: driver
-          })
-          .then(() => {
-            console.log("Document successfully updated!");
-            this.readEmployees();
-          })
-          .catch((error) => {
-            console.error("Error updating document: ", error);
-          });
-        break;
-
         case "xe ngoài":
           db.collection("xe ngoai")
           .doc(id)
@@ -455,7 +251,7 @@ export default {
             console.error("Error updating document: ", error);
           });
         break;
-      } 
+       } 
     }
     
     

@@ -1,130 +1,130 @@
-<template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br />
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener"
-        >vue-cli documentation</a
-      >.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel"
-          target="_blank"
-          rel="noopener"
-          >babel</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router"
-          target="_blank"
-          rel="noopener"
-          >router</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-vuex"
-          target="_blank"
-          rel="noopener"
-          >vuex</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint"
-          target="_blank"
-          rel="noopener"
-          >eslint</a
-        >
-      </li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li>
-        <a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a>
-      </li>
-      <li>
-        <a href="https://forum.vuejs.org" target="_blank" rel="noopener"
-          >Forum</a
-        >
-      </li>
-      <li>
-        <a href="https://chat.vuejs.org" target="_blank" rel="noopener"
-          >Community Chat</a
-        >
-      </li>
-      <li>
-        <a href="https://twitter.com/vuejs" target="_blank" rel="noopener"
-          >Twitter</a
-        >
-      </li>
-      <li>
-        <a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a>
-      </li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li>
-        <a href="https://router.vuejs.org" target="_blank" rel="noopener"
-          >vue-router</a
-        >
-      </li>
-      <li>
-        <a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/vue-devtools#vue-devtools"
-          target="_blank"
-          rel="noopener"
-          >vue-devtools</a
-        >
-      </li>
-      <li>
-        <a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener"
-          >vue-loader</a
-        >
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-          rel="noopener"
-          >awesome-vue</a
-        >
-      </li>
-    </ul>
-  </div>
-</template>
+      <el-input
+        placeholder="Ngày"
+        v-model="date">
+      </el-input>
+    
+      <!-- <el-input
+        placeholder="Thứ"
+        v-model="day">
+      </el-input> -->
+      <el-select v-model="day" placeholder="Thứ">
+         <el-option
+          v-for="item in days"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
 
-<script>
-export default {
-  name: "HelloWorld",
-  props: {
-    msg: String,
-  },
-};
-</script>
+      <el-select v-model="licensePlate" placeholder="Biển số">
+         <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
+      <el-input
+        placeholder="Tên khách"
+        v-model="name"
+      >
+      </el-input>
+
+      <!-- <el-autocomplete
+        class="inline-input"
+        v-model="name"
+        :fetch-suggestions="querySearch"
+        placeholder="Tên khách"
+        @select="handleSelect"
+      ></el-autocomplete> -->
+
+      
+      <el-input
+        placeholder="Nơi đi"
+        v-model="from"
+        >
+      </el-input>
+
+      <el-input
+        placeholder="Nơi đến"
+        v-model="to"
+        >
+      </el-input>
+
+      <el-input
+        type="number"
+        placeholder="Chuyến"
+        v-model="trip"
+        >
+      </el-input>
+
+
+      <el-input
+        placeholder="Tấn"
+        type="number"
+        v-model="ton"
+        >
+      </el-input>
+
+      <el-input
+        placeholder="Đơn giá"
+        type="number"
+        v-model="unitPrice"
+        >
+      </el-input>
+
+      <el-input
+        placeholder="Phí"
+        type="number"
+        v-model="extraCost"
+        >
+      </el-input>
+
+      <el-input
+        placeholder="Dầu"
+        type="number"
+        v-model="oil"
+        >
+      </el-input>
+
+      <el-input
+        type="number"
+        placeholder="Số Km"
+        v-model="kilometer"
+        >
+      </el-input>
+
+      <el-input
+        type="number"
+        placeholder="Công an"
+        v-model="police"
+        >
+      </el-input>
+
+      <el-input
+        type="number"
+        placeholder="Thành tiền"
+        v-model="total"
+        >
+      </el-input>
+
+      <el-input
+        type="number"
+        placeholder="Lương"
+        v-model="salary"
+        >
+      </el-input>
+
+      <el-input
+        placeholder="Tài xế"
+        v-model="driver"
+        type="text"
+        >
+      </el-input>
+
+      <el-button type="success" icon="el-icon-check" @click="createEmployee(date, day, licensePlate, name, from, to , kilometer, trip, ton, unitPrice, extraCost, oil, police, total, salary, driver)"> Add </el-button>
+      
+
+      <el-button round slot="reference" type="success" icon="el-icon-edit">Create Itinerary</el-button
+      >

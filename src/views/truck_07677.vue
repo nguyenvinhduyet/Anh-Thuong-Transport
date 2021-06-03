@@ -1,5 +1,19 @@
 <template>
   <div>
-    <h1>This is an 50H 07677 page</h1>
+    <CreateItinerary></CreateItinerary>
+    <Itinerary07677List />
   </div>
 </template>
+
+<script>
+import CreateItinerary from "../components/CreateItinerary.vue";
+import Itinerary07677List from "../components/Itinerary07677List.vue";
+export default {
+  components: {
+    CreateItinerary,
+    Itinerary07677List,
+  },
+};
+</script>
+
+<style></style>
