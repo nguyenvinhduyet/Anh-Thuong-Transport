@@ -42,11 +42,16 @@
             trigger="click"
           >
             
-
-            <el-input
+            <el-date-picker
+              v-model="scope.row.date"
+              type="date"
+              format="dd/MM/yyyy"
+              placeholder="Chọn ngày">
+            </el-date-picker>
+            <!-- <el-input
               placeholder="Ngày"
               v-model="scope.row.date"
-            ></el-input>
+            ></el-input> -->
 
             <el-input
               placeholder="Thứ"
@@ -174,6 +179,17 @@ export default {
         }
     },
     methods: {
+    formatDate(date){
+      let dateData = date
+      let seconds = dateData.seconds
+      const milisecond = seconds * 1000
+      const dateObject = new Date(milisecond)
+      const humandayFormat = dateObject.toLocaleString("en-US", {day: "2-digit"} )
+      const humanmonthFormat = dateObject.toLocaleString("en-US", {month: "2-digit"} )
+      const humanyearFormat = dateObject.toLocaleString("en-US", {year: "numeric"} )
+      const humanDateFormat = humandayFormat + '-' + humanmonthFormat + '-' + humanyearFormat
+      return humanDateFormat
+    },
     readEmployees() {
       this.itinerary = [];
       db.collection("50H 07677")
@@ -182,7 +198,7 @@ export default {
           querySnapshot.forEach((doc) => {
             this.itinerary.push({
               id: doc.id,
-              date: doc.data().date,
+              date: this.formatDate(doc.data().date),
               day: doc.data().day,
               from: doc.data().from,
               to: doc.data().to,

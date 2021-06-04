@@ -6,10 +6,16 @@
       trigger="click">
       
       
-      <el-input
+      <!-- <el-input
         placeholder="Ngày"
         v-model="date">
-      </el-input>
+      </el-input> -->
+      <el-date-picker
+        v-model="date"
+        type="date"
+        format="dd/MM/yyyy"
+        placeholder="Chọn ngày">
+      </el-date-picker>
       
       <el-select v-model="day" placeholder="Thứ">
          <el-option

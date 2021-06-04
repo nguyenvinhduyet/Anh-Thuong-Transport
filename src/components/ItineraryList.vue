@@ -37,10 +37,16 @@
           >
             
 
-            <el-input
+            <!-- <el-input
               placeholder="Ngày"
               v-model="scope.row.date"
-            ></el-input>
+            ></el-input> -->
+            <el-date-picker
+              v-model="scope.row.date"
+              type="date"
+              format="dd/MM/yyyy"
+              placeholder="Chọn ngày">
+            </el-date-picker>
 
             <el-input
               placeholder="Thứ"
@@ -144,6 +150,9 @@
 <script>
 import firebase from "../firebaseInit";
 const db = firebase.firestore();
+
+
+
 export default {
     data() {
         return{
@@ -168,15 +177,34 @@ export default {
         }
     },
     methods: {
+    formatDate(date){
+      let dateData = date
+      let seconds = dateData.seconds
+      const milisecond = seconds * 1000
+      const dateObject = new Date(milisecond)
+      const humandayFormat = dateObject.toLocaleString("en-US", {day: "2-digit"} )
+      const humanmonthFormat = dateObject.toLocaleString("en-US", {month: "2-digit"} )
+      const humanyearFormat = dateObject.toLocaleString("en-US", {year: "numeric"} )
+      const humanDateFormat = humandayFormat + '-' + humanmonthFormat + '-' + humanyearFormat
+      return humanDateFormat
+    },
+    formatTimeStamp(date){
+      let myDate = date;
+      myDate = myDate.split("-");
+      var newDate = new Date( myDate[2], myDate[1] - 1, myDate[0]);
+      console.log("date dinh dang TimeStamp: ", newDate)
+      return newDate
+    },
     readEmployees() {
       this.itinerary = [];
       db.collection("51C 60596")
         .get()
         .then((querySnapshot) => {
+          
           querySnapshot.forEach((doc) => {
             this.itinerary.push({
               id: doc.id,
-              date: doc.data().date,
+              date: this.formatDate(doc.data().date),
               day: doc.data().day,
               from: doc.data().from,
               to: doc.data().to,
@@ -206,7 +234,7 @@ export default {
           querySnapshot.forEach((doc) => {
             this.itinerary.push({
               id: doc.id,
-              date: doc.data().date,
+              date: this.formatDate(doc.data().date),
               day: doc.data().day,
               from: doc.data().from,
               to: doc.data().to,
@@ -236,7 +264,7 @@ export default {
           querySnapshot.forEach((doc) => {
             this.itinerary.push({
               id: doc.id,
-              date: doc.data().date,
+              date: this.formatDate(doc.data().date),
               day: doc.data().day,
               from: doc.data().from,
               to: doc.data().to,
@@ -259,6 +287,7 @@ export default {
         .catch((error) => {
           console.log("Error getting documents: ", error);
         });
+      
 
       db.collection("xe ngoai")
         .get()
@@ -266,7 +295,7 @@ export default {
           querySnapshot.forEach((doc) => {
             this.itinerary.push({
               id: doc.id,
-              date: doc.data().date,
+              date: this.formatDate(doc.data().date),
               day: doc.data().day,
               from: doc.data().from,
               to: doc.data().to,
@@ -457,16 +486,10 @@ export default {
         break;
       } 
     }
-    
-    
   },
-
-  
-
 
   mounted() {
     this.readEmployees();
-    // this.links = this.loadAll();
   },
 }
 </script>
