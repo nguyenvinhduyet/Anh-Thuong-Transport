@@ -147,6 +147,7 @@
             ></el-input>
 
             <el-input
+              :disabled="true"
               placeholder="Số Km"
               v-model="scope.row.kilometer"
             ></el-input>
@@ -188,6 +189,7 @@
             
 
             <el-input
+              :disabled="true"
               placeholder="Thành tiền"
               v-model="scope.row.total"
             ></el-input>
@@ -253,9 +255,9 @@
       
 
             <el-button type="primary" icon="el-icon-check" @click="updateEmployee(scope.row.id, scope.row.name, scope.row.date, scope.row.day, scope.row.licensePlate, scope.row.from, scope.row.to , scope.row.kilometer, scope.row.trip, scope.row.ton, scope.row.unitPrice, scope.row.extraCost, scope.row.oil, scope.row.police, scope.row.total, scope.row.salary, scope.row.driver, scope.row.kilometermfinish,
-            scope.row.kilometermfinish, scope.row.push, scope.row.carry, scope.row.kmnew, scope.row.kmold, scope.row.patch, scope.row.repair, scope.row.wash, scope.row.owe, scope.row.details, scope.row.notwork, scope.row.work, scope.row.spendingcar, scope.row.spendingmoneyforcar, scope.row.spendingother, scope.row.spendingmoneyforother)"> Edit </el-button>
+            scope.row.push, scope.row.carry, scope.row.kmnew, scope.row.kmold, scope.row.patch, scope.row.repair, scope.row.wash, scope.row.owe, scope.row.details, scope.row.notwork, scope.row.work, scope.row.spendingcar, scope.row.spendingmoneyforcar, scope.row.spendingother, scope.row.spendingmoneyforother)"> Edit </el-button>
 
-            
+    
 
             <el-button size="default" slot="reference" type="primary" icon="el-icon-edit-outline"></el-button>
           </el-popover>
@@ -380,6 +382,8 @@ export default {
 
     updateEmployee(id, name, date, day, licensePlate, from, to , kilometer, trip, ton, unitPrice, extraCost, oil, police, total, salary, driver, kilometermfinish,
     push, carry, kmnew, kmold, patch, repair, wash, owe, details, notwork, work, spendingcar, spendingmoneyforcar, spendingother, spendingmoneyforother) {
+      let totalPrice = trip * unitPrice
+      let km = kmnew - kmold
       switch(licensePlate){
         case "51C 60596":
           db.collection("51C 60596")
@@ -391,14 +395,14 @@ export default {
             licensePlate: licensePlate, 
             from: from, 
             to: to, 
-            kilometer: kilometer, 
+            kilometer: km, 
             trip: trip,
             ton: ton, 
             unitPrice: unitPrice, 
             extraCost: extraCost, 
             oil: oil, 
             police: police, 
-            total: total, 
+            total: totalPrice, 
             salary: salary, 
             driver: driver,
             kilometermfinish: kilometermfinish,

@@ -148,6 +148,7 @@
             ></el-input>
 
             <el-input
+              :disabled="true"
               placeholder="Số Km"
               v-model="scope.row.kilometer"
             ></el-input>
@@ -189,6 +190,7 @@
             
 
             <el-input
+              :disabled="true"
               placeholder="Thành tiền"
               v-model="scope.row.total"
             ></el-input>
@@ -250,7 +252,7 @@
             ></el-input>
           </div>
 
-            <el-button icon="el-icon-check" type="primary" @click="updateEmployee(scope.row.id, scope.row.name, scope.row.date, scope.row.day, scope.row.licensePlate, scope.row.from, scope.row.to , scope.row.kilometer, scope.row.trip, scope.row.ton, scope.row.unitPrice, scope.row.extraCost, scope.row.oil, scope.row.police, scope.row.total, scope.row.salary, scope.row.driver, scope.row.kilometermfinish,
+            <el-button icon="el-icon-check" type="primary" @click="updateEmployee(scope.row.id, scope.row.name, scope.row.date, scope.row.day, scope.row.licensePlate, scope.row.from, scope.row.to , scope.row.kilometer, scope.row.trip, scope.row.ton, scope.row.unitPrice, scope.row.extraCost, scope.row.oil, scope.row.police, scope.row.total, scope.row.salary, scope.row.driver,
             scope.row.kilometermfinish, scope.row.push, scope.row.carry, scope.row.kmnew, scope.row.kmold, scope.row.patch, scope.row.repair, scope.row.wash, scope.row.owe, scope.row.details, scope.row.notwork, scope.row.work, scope.row.spendingcar, scope.row.spendingmoneyforcar, scope.row.spendingother, scope.row.spendingmoneyforother)"> 
               Done 
             </el-button>
@@ -281,7 +283,7 @@ export default {
             day: "",
             from: "",
             to: "",
-            kilometer: "",
+            kilometer: Number,
             trip: "",
             ton: "",
             oil: "",
@@ -372,6 +374,8 @@ export default {
 
     updateEmployee(id, name, date, day, licensePlate, from, to , kilometer, trip, ton, unitPrice, extraCost, oil, police, total, salary, driver, kilometermfinish,
     push, carry, kmnew, kmold, patch, repair, wash, owe, details, notwork, work, spendingcar, spendingmoneyforcar, spendingother, spendingmoneyforother) {
+      let totalPrice = trip * unitPrice
+      let km = kmnew - kmold
       switch(licensePlate){
         case "50H 07677":
           db.collection("50H 07677")
@@ -383,14 +387,14 @@ export default {
             licensePlate: licensePlate, 
             from: from, 
             to: to, 
-            kilometer: kilometer, 
+            kilometer: km, 
             trip: trip,
             ton: ton, 
             unitPrice: unitPrice, 
             extraCost: extraCost, 
             oil: oil, 
             police: police, 
-            total: total, 
+            total: totalPrice, 
             salary: salary, 
             driver: driver,
             kilometermfinish: kilometermfinish,

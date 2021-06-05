@@ -101,7 +101,7 @@
             ></el-input>
 
             <el-input
-              placeholder="Chuyến"
+              placeholder="Số chuyến"
               v-model="scope.row.trip"
             ></el-input>
           </div>
@@ -118,7 +118,7 @@
             ></el-input>
 
             <el-input
-              placeholder="Phí"
+              placeholder="Tiền phí"
               v-model="scope.row.extraCost"
             ></el-input>
 
@@ -136,24 +136,25 @@
 
           <div class="flex">
             <el-input
-              placeholder="Dầu"
+              placeholder="Tiền dầu"
               v-model="scope.row.oil"
             ></el-input>
 
             <el-input
-              placeholder="Số Km"
+              :disabled="true"
+              placeholder="Số KM đã đi sau khi đổ dầu (được điền tự động)"
               v-model="scope.row.kilometer"
             ></el-input>
           </div>
           
           <div class="flex">
             <el-input
-              placeholder="Mới"
+              placeholder="KM mới"
               v-model="scope.row.kmnew"
             ></el-input>
 
             <el-input
-              placeholder="Cũ"
+              placeholder="KM cũ"
               v-model="scope.row.kmold"
             ></el-input>
           </div>
@@ -175,13 +176,14 @@
             ></el-input>
 
             <el-input
-              placeholder="Công an"
+              placeholder="Phí công an"
               v-model="scope.row.police"
             ></el-input>
           </div>
             
 
             <el-input
+              :disabled="true"
               placeholder="Thành tiền"
               v-model="scope.row.total"
             ></el-input>
@@ -243,7 +245,7 @@
             ></el-input>
           </div>
             <el-button type="primary" icon="el-icon-check" @click="updateEmployee(scope.row.id, scope.row.name, scope.row.date, scope.row.day, scope.row.licensePlate, scope.row.from, scope.row.to , scope.row.kilometer, scope.row.trip, scope.row.ton, scope.row.unitPrice, scope.row.extraCost, scope.row.oil, scope.row.police, scope.row.total, scope.row.salary, scope.row.driver, scope.row.kilometermfinish,
-            scope.row.kilometermfinish, scope.row.push, scope.row.carry, scope.row.kmnew, scope.row.kmold, scope.row.patch, scope.row.repair, scope.row.wash, scope.row.owe, scope.row.details, scope.row.notwork, scope.row.work, scope.row.spendingcar, scope.row.spendingmoneyforcar, scope.row.spendingother, scope.row.spendingmoneyforother)"> 
+            scope.row.push, scope.row.carry, scope.row.kmnew, scope.row.kmold, scope.row.patch, scope.row.repair, scope.row.wash, scope.row.owe, scope.row.details, scope.row.notwork, scope.row.work, scope.row.spendingcar, scope.row.spendingmoneyforcar, scope.row.spendingother, scope.row.spendingmoneyforother)"> 
               Done
             </el-button>
 
@@ -285,8 +287,15 @@ export default {
             licensePlate: "",
             extraCost: "",
             unitPrice: "",
+            kilometermfinish: "",
+            push: "",
+            carry: "",
+            kmnew: "", 
+            kmold: "", 
+            patch: "", repair: "", wash: "", owe: "", details: "", work: "", notwork: "", spendingcar: "", spendingmoneyforcar: "", spendingother: "", spendingmoneyforother: "",
             itinerary: [],
             search: "",
+            
         }
     },
     methods: {
@@ -542,6 +551,8 @@ export default {
     },
     updateEmployee(id, name, date, day, licensePlate, from, to , kilometer, trip, ton, unitPrice, extraCost, oil, police, total, salary, driver, kilometermfinish,
     push, carry, kmnew, kmold, patch, repair, wash, owe, details, notwork, work, spendingcar, spendingmoneyforcar, spendingother, spendingmoneyforother) {
+      let totalPrice = trip * unitPrice
+      let km = kmnew - kmold
       switch(licensePlate){
         case "51D 46295":
           db.collection("51D 46295")
@@ -553,14 +564,14 @@ export default {
             licensePlate: licensePlate, 
             from: from, 
             to: to, 
-            kilometer: kilometer, 
+            kilometer: km, 
             trip: trip,
             ton: ton, 
             unitPrice: unitPrice, 
             extraCost: extraCost, 
             oil: oil, 
             police: police, 
-            total: total, 
+            total: totalPrice, 
             salary: salary, 
             driver: driver,
             kilometermfinish: kilometermfinish,
@@ -599,14 +610,14 @@ export default {
             licensePlate: licensePlate, 
             from: from, 
             to: to, 
-            kilometer: kilometer, 
+            kilometer: km, 
             trip: trip,
             ton: ton, 
             unitPrice: unitPrice, 
             extraCost: extraCost, 
             oil: oil, 
             police: police, 
-            total: total, 
+            total: totalPrice, 
             salary: salary, 
             driver: driver,
             kilometermfinish: kilometermfinish,
@@ -645,14 +656,14 @@ export default {
             licensePlate: licensePlate, 
             from: from, 
             to: to, 
-            kilometer: kilometer, 
+            kilometer: km, 
             trip: trip,
             ton: ton, 
             unitPrice: unitPrice, 
             extraCost: extraCost, 
             oil: oil, 
             police: police, 
-            total: total, 
+            total: totalPrice, 
             salary: salary, 
             driver: driver,
             kilometermfinish: kilometermfinish,
@@ -691,14 +702,14 @@ export default {
             licensePlate: licensePlate, 
             from: from, 
             to: to, 
-            kilometer: kilometer, 
+            kilometer: km, 
             trip: trip,
             ton: ton, 
             unitPrice: unitPrice, 
             extraCost: extraCost, 
             oil: oil, 
             police: police, 
-            total: total, 
+            total: totalPrice, 
             salary: salary, 
             driver: driver,
             kilometermfinish: kilometermfinish,

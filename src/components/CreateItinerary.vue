@@ -64,8 +64,14 @@
 
         <el-input
           type="number"
-          placeholder="Chuyến"
+          placeholder="Số chuyến"
           v-model="trip">
+        </el-input>
+
+        <el-input
+          type="number"
+          placeholder="Đơn giá"
+          v-model="unitPrice">
         </el-input>
       </div>
       
@@ -75,15 +81,11 @@
           v-model="ton">
         </el-input>
 
-        <el-input
-          type="number"
-          placeholder="Đơn giá"
-          v-model="unitPrice">
-        </el-input>
+        
 
         <el-input
           type="number"
-          placeholder="Phí"
+          placeholder="Tiền phí"
           v-model="extraCost">
         </el-input>
 
@@ -104,49 +106,49 @@
 
       <div class="flex">
         <el-input
-          placeholder="Dầu"
+          placeholder="Tiền dầu"
           type="number"
           v-model="oil">
         </el-input>
 
         <el-input
           type="number"
-          placeholder="Số Km"
+          placeholder="Số KM đã đi sau khi đổ dầu (được điền tự động)"
           v-model="kilometer">
         </el-input>
       </div>
 
       <div class="flex">
         <el-input
-          placeholder="Mới"
+          placeholder="Số KM Mới"
           v-model="kmnew">
         </el-input>
 
         <el-input
-          placeholder="Cũ"
+          placeholder="Số KM Cũ"
           v-model="kmold">
         </el-input>
       </div>
 
       <div class="flex">
         <el-input
-          placeholder="Vá xe"
+          placeholder="Chi phí vá xe"
           v-model="patch">
         </el-input>
 
         <el-input
-          placeholder="Sửa xe"
+          placeholder="Chi phí sửa xe"
           v-model="repair">
         </el-input>
 
         <el-input
-          placeholder="Rửa xe"
+          placeholder="Chi phí rửa xe"
           v-model="wash">
         </el-input>
 
         <el-input
           type="number"
-          placeholder="Công an"
+          placeholder="Phí công an"
           v-model="police">
         </el-input>
       </div>
@@ -154,8 +156,9 @@
       
 
       <el-input
+        :disabled="true"
         type="number"
-        placeholder="Thành tiền"
+        placeholder="Thành tiền (sẽ tự động được tính)"
         v-model="total"
         >
       </el-input>
@@ -167,7 +170,7 @@
 
       <el-input
         type="number"
-        placeholder="Lương"
+        placeholder="Tiền lương"
         v-model="salary"
         >
       </el-input>
@@ -315,14 +318,16 @@ export default {
     methods: {
         createEmployee(date, day, licensePlate, name, from, to , kilometer, trip, ton, unitPrice, extraCost, oil, police, total, salary, driver, kilometermfinish, 
           push, carry, kmnew, kmold, patch, repair, wash, owe, details, work, notwork, spendingcar, spendingmoneyforcar, spendingother, spendingmoneyforother) {
-        if (name != "" && date != "" && licensePlate != "" && from != "" && to != "" && kilometer != "" && trip != ""
-                                && ton != "" && unitPrice != "" && extraCost != "" && oil != "" && police != "" && total != "" && salary != "" && driver != "") {
-        
+        // if (name != "" && date != "" && licensePlate != "" && from != "" && to != "" && kilometer != "" && trip != ""
+        //                         && ton != "" && unitPrice != "" && extraCost != "" && oil != "" && police != "" && total != "" && salary != "" && driver != "") {
+        if (name != "" && licensePlate != ""){
+        let totalPrice = trip * unitPrice
+        let km = kmnew - kmold
         switch(licensePlate){
           case '51C 60596':
             db.collection("51C 60596")
-            .add({ date: date, name: name, day: day, licensePlate: licensePlate, from: from, to: to, kilometer: kilometer, trip: trip
-                  ,ton: ton, unitPrice: unitPrice, extraCost: extraCost, oil: oil, police: police, total: total, salary: salary, driver: driver,
+            .add({ date: date, name: name, day: day, licensePlate: licensePlate, from: from, to: to, kilometer: km, trip: trip
+                  ,ton: ton, unitPrice: unitPrice, extraCost: extraCost, oil: oil, police: police, total: totalPrice, salary: salary, driver: driver,
                   kilometermfinish: kilometermfinish, push: push, carry: carry, kmnew: kmnew, kmold: kmold, 
                   patch: patch, repair: repair, wash: wash, owe: owe, details: details, work: work, notwork: notwork, 
                   spendingcar: spendingcar, spendingmoneyforcar: spendingmoneyforcar, spendingother: spendingother, spendingmoneyforother: spendingmoneyforother})
@@ -336,8 +341,8 @@ export default {
 
           case '51D 46295':
             db.collection("51D 46295")
-            .add({ date: date, name: name, day: day, licensePlate: licensePlate, from: from, to: to, kilometer: kilometer, trip: trip
-                  ,ton: ton, unitPrice: unitPrice, extraCost: extraCost, oil: oil, police: police, total: total, salary: salary, driver: driver,
+            .add({ date: date, name: name, day: day, licensePlate: licensePlate, from: from, to: to, kilometer: km, trip: trip
+                  ,ton: ton, unitPrice: unitPrice, extraCost: extraCost, oil: oil, police: police, total: totalPrice, salary: salary, driver: driver,
                   kilometermfinish: kilometermfinish, push: push, carry: carry, kmnew: kmnew, kmold: kmold, 
                   patch: patch, repair: repair, wash: wash, owe: owe, details: details, work: work, notwork: notwork, 
                   spendingcar: spendingcar, spendingmoneyforcar: spendingmoneyforcar, spendingother: spendingother, spendingmoneyforother: spendingmoneyforother})
@@ -351,8 +356,8 @@ export default {
           
           case '50H 07677':
             db.collection("50H 07677")
-            .add({ date: date, name: name, day: day, licensePlate: licensePlate, from: from, to: to, kilometer: kilometer, trip: trip
-                  ,ton: ton, unitPrice: unitPrice, extraCost: extraCost, oil: oil, police: police, total: total, salary: salary, driver: driver,
+            .add({ date: date, name: name, day: day, licensePlate: licensePlate, from: from, to: to, kilometer: km, trip: trip
+                  ,ton: ton, unitPrice: unitPrice, extraCost: extraCost, oil: oil, police: police, total: totalPrice, salary: salary, driver: driver,
                   kilometermfinish: kilometermfinish, push: push, carry: carry, kmnew: kmnew, kmold: kmold, 
                   patch: patch, repair: repair, wash: wash, owe: owe, details: details, work: work, notwork: notwork, 
                   spendingcar: spendingcar, spendingmoneyforcar: spendingmoneyforcar, spendingother: spendingother, spendingmoneyforother: spendingmoneyforother})
@@ -366,8 +371,8 @@ export default {
 
           case 'xe ngoài':
             db.collection("xe ngoai")
-            .add({ date: date, name: name, day: day, licensePlate: licensePlate, from: from, to: to, kilometer: kilometer, trip: trip
-                  ,ton: ton, unitPrice: unitPrice, extraCost: extraCost, oil: oil, police: police, total: total, salary: salary, driver: driver,
+            .add({ date: date, name: name, day: day, licensePlate: licensePlate, from: from, to: to, kilometer: km, trip: trip
+                  ,ton: ton, unitPrice: unitPrice, extraCost: extraCost, oil: oil, police: police, total: totalPrice, salary: salary, driver: driver,
                   kilometermfinish: kilometermfinish, push: push, carry: carry, kmnew: kmnew, kmold: kmold, 
                   patch: patch, repair: repair, wash: wash, owe: owe, details: details, work: work, notwork: notwork, 
                   spendingcar: spendingcar, spendingmoneyforcar: spendingmoneyforcar, spendingother: spendingother, spendingmoneyforother: spendingmoneyforother})
