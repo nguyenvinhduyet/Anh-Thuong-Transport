@@ -57,41 +57,38 @@
           <el-popover
             placement="bottom"
             width="1200"
-            trigger="click"
-          >
+            trigger="click">
+
+            <div class="flex">
+              <el-date-picker
+                v-model="scope.row.date"
+                type="date"
+                format="dd/MM/yyyy"
+                placeholder="Chọn ngày">
+              </el-date-picker>
+
+              <el-input
+                placeholder="Thứ"
+                v-model="scope.row.day">
+              </el-input>
+
+              <el-select v-model="scope.row.licensePlate" placeholder="Biển số">
+                  <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                  </el-option>
+              </el-select>
+            </div>
             
 
-            <!-- <el-input
-              placeholder="Ngày"
-              v-model="scope.row.date"
-            ></el-input> -->
-            <el-date-picker
-              v-model="scope.row.date"
-              type="date"
-              format="dd/MM/yyyy"
-              placeholder="Chọn ngày">
-            </el-date-picker>
-
             <el-input
-              placeholder="Thứ"
-              v-model="scope.row.day"
-            ></el-input>
-
-
-            <el-select v-model="scope.row.licensePlate" placeholder="Biển số">
-                <el-option
-                  v-for="item in options"
-                  :key="item.value"
-                  :label="item.label"
-                  :value="item.value">
-                </el-option>
-            </el-select>
-
-            <el-input
-              placeholder="Tên"
+              placeholder="Tên khách"
               v-model="scope.row.name"
             ></el-input>
 
+          <div class="flex">
             <el-input
               placeholder="Nơi đi"
               v-model="scope.row.from"
@@ -101,11 +98,20 @@
               placeholder="Nơi đến"
               v-model="scope.row.to"
             ></el-input>
+          </div>
+            
+          <div class="flex">
+            <el-input
+              placeholder="Km chuyến đi"
+              v-model="scope.row.kilometermfinish"
+            ></el-input>
 
             <el-input
               placeholder="Chuyến"
               v-model="scope.row.trip"
             ></el-input>
+          </div>
+            
 
             <el-input
               placeholder="Tấn"
@@ -122,6 +128,19 @@
               v-model="scope.row.extraCost"
             ></el-input>
 
+          <div class="flex">
+            <el-input
+              placeholder="Chành"
+              v-model="scope.row.push"
+            ></el-input>
+
+            <el-input
+              placeholder="Bốc xếp"
+              v-model="scope.row.carry"
+            ></el-input>
+          </div>
+
+          <div class="flex">
             <el-input
               placeholder="Dầu"
               v-model="scope.row.oil"
@@ -131,15 +150,51 @@
               placeholder="Số Km"
               v-model="scope.row.kilometer"
             ></el-input>
+          </div>
+          
+          <div class="flex">
+            <el-input
+              placeholder="Mới"
+              v-model="scope.row.kmnew"
+            ></el-input>
+
+            <el-input
+              placeholder="Cũ"
+              v-model="scope.row.kmold"
+            ></el-input>
+          </div>
+
+          <div class="flex">
+            <el-input
+              placeholder="Tiền vá xe"
+              v-model="scope.row.patch"
+            ></el-input>
+
+            <el-input
+              placeholder="Tiền sửa xe"
+              v-model="scope.row.repair"
+            ></el-input>
+
+            <el-input
+              placeholder="Tiền rửa xe"
+              v-model="scope.row.wash"
+            ></el-input>
 
             <el-input
               placeholder="Công an"
               v-model="scope.row.police"
             ></el-input>
+          </div>
+            
 
             <el-input
               placeholder="Thành tiền"
               v-model="scope.row.total"
+            ></el-input>
+
+            <el-input
+              placeholder="Nợ/Thu"
+              v-model="scope.row.owe"
             ></el-input>
 
             <el-input
@@ -152,7 +207,52 @@
               v-model="scope.row.driver"
             ></el-input>
 
-            <el-button type="success" @click="updateEmployee(scope.row.id, scope.row.name, scope.row.date, scope.row.day, scope.row.licensePlate, scope.row.from, scope.row.to , scope.row.kilometer, scope.row.trip, scope.row.ton, scope.row.unitPrice, scope.row.extraCost, scope.row.oil, scope.row.police, scope.row.total, scope.row.salary, scope.row.driver)"> Edit </el-button>
+            <el-input
+              placeholder="Chi tiết"
+              v-model="scope.row.details"
+            ></el-input>
+
+          <div class="flex">
+            <el-input
+              placeholder="Tài nghỉ"
+              v-model="scope.row.notwork"
+            ></el-input>
+
+            <el-input
+              placeholder="Tài trực"
+              v-model="scope.row.work"
+            ></el-input>
+          </div>
+            
+          <div class="flex">
+            <el-input
+              placeholder="Chi xe"
+              v-model="scope.row.spendingcar"
+            ></el-input>
+
+            <el-input
+              placeholder="Tiền chi xe"
+              v-model="scope.row.spendingmoneyforcar"
+            ></el-input>
+          </div>
+            
+
+          <div class="flex">
+            <el-input
+              placeholder="Chi ngoài"
+              v-model="scope.row.spendingother"
+            ></el-input>
+
+            <el-input
+              placeholder="Tiền chi ngoài"
+              v-model="scope.row.spendingmoneyforother"
+            ></el-input>
+          </div>  
+
+
+
+            <el-button type="success" @click="updateEmployee(scope.row.id, scope.row.name, scope.row.date, scope.row.day, scope.row.licensePlate, scope.row.from, scope.row.to , scope.row.kilometer, scope.row.trip, scope.row.ton, scope.row.unitPrice, scope.row.extraCost, scope.row.oil, scope.row.police, scope.row.total, scope.row.salary, scope.row.driver, scope.row.kilometermfinish,
+            scope.row.kilometermfinish, scope.row.push, scope.row.carry, scope.row.kmnew, scope.row.kmold, scope.row.patch, scope.row.repair, scope.row.wash, scope.row.owe, scope.row.details, scope.row.notwork, scope.row.work, scope.row.spendingcar, scope.row.spendingmoneyforcar, scope.row.spendingother, scope.row.spendingmoneyforother)"> Edit </el-button>
 
             
 
@@ -271,7 +371,8 @@ export default {
       this.readEmployees();
     },
 
-    updateEmployee(id, name, date, day, licensePlate, from, to , kilometer, trip, ton, unitPrice, extraCost, oil, police, total, salary, driver) {
+    updateEmployee(id, name, date, day, licensePlate, from, to , kilometer, trip, ton, unitPrice, extraCost, oil, police, total, salary, driver, kilometermfinish,
+    push, carry, kmnew, kmold, patch, repair, wash, owe, details, notwork, work, spendingcar, spendingmoneyforcar, spendingother, spendingmoneyforother) {
       switch(licensePlate){
         case "xe ngoài":
           db.collection("xe ngoai")
@@ -292,7 +393,23 @@ export default {
             police: police, 
             total: total, 
             salary: salary, 
-            driver: driver
+            driver: driver,
+            kilometermfinish: kilometermfinish,
+            push: push, 
+            carry: carry, 
+            kmnew: kmnew, 
+            kmold: kmold, 
+            patch: patch, 
+            repair: repair, 
+            wash: wash, 
+            owe: owe, 
+            details: details, 
+            notwork: notwork, 
+            work: work, 
+            spendingcar: spendingcar, 
+            spendingmoneyforcar: spendingmoneyforcar, 
+            spendingother: spendingother, 
+            spendingmoneyforother: spendingmoneyforother
           })
           .then(() => {
             console.log("Document successfully updated!");

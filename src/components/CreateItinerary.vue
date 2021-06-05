@@ -58,7 +58,7 @@
 
       <div class="flex">
         <el-input
-          placeholder="Km"
+          placeholder="Km chuyến đi"
           v-model="kilometermfinish">
         </el-input>
 
@@ -68,6 +68,7 @@
           v-model="trip">
         </el-input>
       </div>
+      
         <el-input
           type="number"
           placeholder="Tấn"
