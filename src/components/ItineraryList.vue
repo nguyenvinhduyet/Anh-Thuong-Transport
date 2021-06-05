@@ -5,7 +5,7 @@
       :data="itinerary.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
       style="width: 100%;">
 
-      <el-table-column label="Ngày" prop="date">                       </el-table-column>
+      <el-table-column label="Ngày" prop="date"> </el-table-column>
       <el-table-column label="Thứ" prop="day"> </el-table-column>
       <el-table-column label="Số xe" prop="licensePlate"> </el-table-column>
       <el-table-column label="Khách hàng" prop="name"> </el-table-column>
@@ -21,8 +21,8 @@
 
       <el-table-column label="Tiền dầu" prop="oil"> </el-table-column>
       <el-table-column label="Số km" prop="kilometer"> </el-table-column>
-      <el-table-column label="Mới" prop="new"> </el-table-column>
-      <el-table-column label="Cũ" prop="old"> </el-table-column>
+      <el-table-column label="Mới" prop="kmnew"> </el-table-column>
+      <el-table-column label="Cũ" prop="kmold"> </el-table-column>
       <el-table-column label="Vá" prop="patch"> </el-table-column>
       <el-table-column label="Sửa" prop="repair"> </el-table-column>
       <el-table-column label="Rửa" prop="wash"> </el-table-column>
@@ -233,7 +233,23 @@ export default {
               licensePlate: doc.data().licensePlate,
               extraCost: doc.data().extraCost,
               unitPrice: doc.data().unitPrice,
-              name: doc.data().name
+              name: doc.data().name,
+              kilometermfinish: doc.data().kilometermfinish,
+              push: doc.data().push,
+              carry: doc.data().carry,
+              kmnew: doc.data().kmnew, 
+              kmold: doc.data().kmold, 
+              patch: doc.data().patch, 
+              repair: doc.data().repair, 
+              wash: doc.data().wash, 
+              owe: doc.data().owe, 
+              details: doc.data().details, 
+              work: doc.data().work, 
+              notwork: doc.data().notwork, 
+              spendingcar: doc.data().spendingcar, 
+              spendingmoneyforcar: doc.data().spendingmoneyforcar, 
+              spendingother: doc.data().spendingother, 
+              spendingmoneyforother: doc.data().spendingmoneyforother,
             });
             console.log(doc.id, " => ", doc.data());
           });
@@ -263,7 +279,23 @@ export default {
               licensePlate: doc.data().licensePlate,
               extraCost: doc.data().extraCost,
               unitPrice: doc.data().unitPrice,
-              name: doc.data().name
+              name: doc.data().name,
+              kilometermfinish: doc.data().kilometermfinish,
+              push: doc.data().push,
+              carry: doc.data().carry,
+              kmnew: doc.data().kmnew, 
+              kmold: doc.data().kmold, 
+              patch: doc.data().patch, 
+              repair: doc.data().repair, 
+              wash: doc.data().wash, 
+              owe: doc.data().owe, 
+              details: doc.data().details, 
+              work: doc.data().work, 
+              notwork: doc.data().notwork, 
+              spendingcar: doc.data().spendingcar, 
+              spendingmoneyforcar: doc.data().spendingmoneyforcar, 
+              spendingother: doc.data().spendingother, 
+              spendingmoneyforother: doc.data().spendingmoneyforother,
             });
             console.log(doc.id, " => ", doc.data());
           });
@@ -293,7 +325,23 @@ export default {
               licensePlate: doc.data().licensePlate,
               extraCost: doc.data().extraCost,
               unitPrice: doc.data().unitPrice,
-              name: doc.data().name
+              name: doc.data().name,
+              kilometermfinish: doc.data().kilometermfinish,
+              push: doc.data().push,
+              carry: doc.data().carry,
+              kmnew: doc.data().kmnew, 
+              kmold: doc.data().kmold, 
+              patch: doc.data().patch, 
+              repair: doc.data().repair, 
+              wash: doc.data().wash, 
+              owe: doc.data().owe, 
+              details: doc.data().details, 
+              work: doc.data().work, 
+              notwork: doc.data().notwork, 
+              spendingcar: doc.data().spendingcar, 
+              spendingmoneyforcar: doc.data().spendingmoneyforcar, 
+              spendingother: doc.data().spendingother, 
+              spendingmoneyforother: doc.data().spendingmoneyforother,
             });
             console.log(doc.id, " => ", doc.data());
           });
@@ -324,7 +372,23 @@ export default {
               licensePlate: doc.data().licensePlate,
               extraCost: doc.data().extraCost,
               unitPrice: doc.data().unitPrice,
-              name: doc.data().name
+              name: doc.data().name,
+              kilometermfinish: doc.data().kilometermfinish,
+              push: doc.data().push,
+              carry: doc.data().carry,
+              kmnew: doc.data().kmnew, 
+              kmold: doc.data().kmold, 
+              patch: doc.data().patch, 
+              repair: doc.data().repair, 
+              wash: doc.data().wash, 
+              owe: doc.data().owe, 
+              details: doc.data().details, 
+              work: doc.data().work, 
+              notwork: doc.data().notwork, 
+              spendingcar: doc.data().spendingcar, 
+              spendingmoneyforcar: doc.data().spendingmoneyforcar, 
+              spendingother: doc.data().spendingother, 
+              spendingmoneyforother: doc.data().spendingmoneyforother,
             });
             console.log(doc.id, " => ", doc.data());
           });

@@ -17,16 +17,34 @@
       <el-table-column label="Khách hàng" prop="name"> </el-table-column>
       <el-table-column label="Nơi đi" prop="from"> </el-table-column>
       <el-table-column label="Nơi đến" prop="to"> </el-table-column>
+      <el-table-column label="km" prop="kilometermfinish"> </el-table-column>
       <el-table-column label="Chuyến" prop="trip"> </el-table-column>
       <el-table-column label="Tấn" prop="ton"> </el-table-column>
       <el-table-column label="Đơn giá" prop="unitPrice"> </el-table-column>
       <el-table-column label="Phí" prop="extraCost"> </el-table-column>
+      <el-table-column label="Chành" prop="push"> </el-table-column>
+      <el-table-column label="Bốc xếp" prop="carry"> </el-table-column>
+
       <el-table-column label="Tiền dầu" prop="oil"> </el-table-column>
       <el-table-column label="Số km" prop="kilometer"> </el-table-column>
+      <el-table-column label="Mới" prop="kmnew"> </el-table-column>
+      <el-table-column label="Cũ" prop="kmold"> </el-table-column>
+      <el-table-column label="Vá" prop="patch"> </el-table-column>
+      <el-table-column label="Sửa" prop="repair"> </el-table-column>
+      <el-table-column label="Rửa" prop="wash"> </el-table-column>
+
       <el-table-column label="Công an" prop="police"> </el-table-column>
-      <el-table-column label="Thành tiền" prop="total"> </el-table-column>
+      <el-table-column label="Thành tiền" prop="total" width="100"> </el-table-column>
+      <el-table-column label="Nơ/thu" prop="owe"> </el-table-column>
       <el-table-column label="Lương" prop="salary"> </el-table-column>
       <el-table-column label="Tài xế" prop="driver"> </el-table-column>
+      <el-table-column label="Chi tiết" prop="details"> </el-table-column>
+      <el-table-column label="Nghỉ" prop="work"> </el-table-column>
+      <el-table-column label="Trực" prop="notwork"> </el-table-column>
+      <el-table-column label="Chi xe" prop="spendingcar"> </el-table-column>
+      <el-table-column label="Số tiền chi xe" prop="spendingmoneyforcar"> </el-table-column>
+      <el-table-column label="Chi ngoài" prop="spendingother"> </el-table-column>
+      <el-table-column label="Số tiền chi" prop="spendingmoneyforother"> </el-table-column>
 
 
 
@@ -213,7 +231,23 @@ export default {
               licensePlate: doc.data().licensePlate,
               extraCost: doc.data().extraCost,
               unitPrice: doc.data().unitPrice,
-              name: doc.data().name
+              name: doc.data().name,
+              kilometermfinish: doc.data().kilometermfinish,
+              push: doc.data().push,
+              carry: doc.data().carry,
+              kmnew: doc.data().kmnew, 
+              kmold: doc.data().kmold, 
+              patch: doc.data().patch, 
+              repair: doc.data().repair, 
+              wash: doc.data().wash, 
+              owe: doc.data().owe, 
+              details: doc.data().details, 
+              work: doc.data().work, 
+              notwork: doc.data().notwork, 
+              spendingcar: doc.data().spendingcar, 
+              spendingmoneyforcar: doc.data().spendingmoneyforcar, 
+              spendingother: doc.data().spendingother, 
+              spendingmoneyforother: doc.data().spendingmoneyforother,
             });
             console.log(doc.id, " => ", doc.data());
           });
