@@ -1,26 +1,44 @@
 <template>
   <div>
       <div>
-      <el-table v-model="search"
+      <el-table v-model="search" :span-method="colspanMethod" :height="tableHeight"
       :data="itinerary.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
       style="width: 100%;">
 
-      <el-table-column label="Ngày" prop="date"> </el-table-column>
+      <el-table-column label="Ngày" prop="date">                       </el-table-column>
       <el-table-column label="Thứ" prop="day"> </el-table-column>
       <el-table-column label="Số xe" prop="licensePlate"> </el-table-column>
       <el-table-column label="Khách hàng" prop="name"> </el-table-column>
       <el-table-column label="Nơi đi" prop="from"> </el-table-column>
       <el-table-column label="Nơi đến" prop="to"> </el-table-column>
+      <el-table-column label="km" prop="kilometermfinish"> </el-table-column>
       <el-table-column label="Chuyến" prop="trip"> </el-table-column>
       <el-table-column label="Tấn" prop="ton"> </el-table-column>
       <el-table-column label="Đơn giá" prop="unitPrice"> </el-table-column>
       <el-table-column label="Phí" prop="extraCost"> </el-table-column>
+      <el-table-column label="Chành" prop="push"> </el-table-column>
+      <el-table-column label="Bốc xếp" prop="carry"> </el-table-column>
+
       <el-table-column label="Tiền dầu" prop="oil"> </el-table-column>
       <el-table-column label="Số km" prop="kilometer"> </el-table-column>
+      <el-table-column label="Mới" prop="new"> </el-table-column>
+      <el-table-column label="Cũ" prop="old"> </el-table-column>
+      <el-table-column label="Vá" prop="patch"> </el-table-column>
+      <el-table-column label="Sửa" prop="repair"> </el-table-column>
+      <el-table-column label="Rửa" prop="wash"> </el-table-column>
+
       <el-table-column label="Công an" prop="police"> </el-table-column>
-      <el-table-column label="Thành tiền" prop="total"> </el-table-column>
+      <el-table-column label="Thành tiền" prop="total" width="100"> </el-table-column>
+      <el-table-column label="Nơ/thu" prop="owe"> </el-table-column>
       <el-table-column label="Lương" prop="salary"> </el-table-column>
       <el-table-column label="Tài xế" prop="driver"> </el-table-column>
+      <el-table-column label="Chi tiết" prop="details"> </el-table-column>
+      <el-table-column label="Nghỉ" prop="work"> </el-table-column>
+      <el-table-column label="Trực" prop="notwork"> </el-table-column>
+      <el-table-column label="Chi xe" prop="spendingcar"> </el-table-column>
+      <el-table-column label="Số tiền chi xe" prop="spendingmoneyforcar"> </el-table-column>
+      <el-table-column label="Chi ngoài" prop="spendingother"> </el-table-column>
+      <el-table-column label="Số tiền chi" prop="spendingmoneyforother"> </el-table-column>
 
 
 
@@ -33,14 +51,8 @@
           <el-popover
             placement="bottom"
             width="1200"
-            trigger="click"
-          >
-            
-
-            <!-- <el-input
-              placeholder="Ngày"
-              v-model="scope.row.date"
-            ></el-input> -->
+            trigger="click">
+          
             <el-date-picker
               v-model="scope.row.date"
               type="date"
@@ -127,6 +139,8 @@
               placeholder="Tài xế"
               v-model="scope.row.driver"
             ></el-input>
+
+            
 
             <el-button type="success" @click="updateEmployee(scope.row.id, scope.row.name, scope.row.date, scope.row.day, scope.row.licensePlate, scope.row.from, scope.row.to , scope.row.kilometer, scope.row.trip, scope.row.ton, scope.row.unitPrice, scope.row.extraCost, scope.row.oil, scope.row.police, scope.row.total, scope.row.salary, scope.row.driver)"> Edit </el-button>
 

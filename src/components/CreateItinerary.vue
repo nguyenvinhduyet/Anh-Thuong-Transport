@@ -1,123 +1,167 @@
 <template>
   <div>
       <el-popover
+      height="auto"
       placement="bottom"
       width="1200"
       trigger="click">
       
-      
-      <!-- <el-input
-        placeholder="Ngày"
-        v-model="date">
-      </el-input> -->
-      <el-date-picker
-        v-model="date"
-        type="date"
-        format="dd/MM/yyyy"
-        placeholder="Chọn ngày">
-      </el-date-picker>
-      
-      <el-select v-model="day" placeholder="Thứ">
-         <el-option
-          v-for="item in days"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
+    
+      <div class="flex">
+        <el-date-picker
+          v-model="date"
+          type="date"
+          format="dd/MM/yyyy"
+          placeholder="Chọn ngày">
+        </el-date-picker>
+        
+        <el-select v-model="day" placeholder="Thứ">
+          <el-option
+            v-for="item in days"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
 
-      <el-select v-model="licensePlate" placeholder="Biển số">
-         <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
+        <el-select v-model="licensePlate" placeholder="Biển số">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </div>
+      
 
 
       <el-input
         placeholder="Tên khách"
-        v-model="name"
-      >
+        v-model="name">
       </el-input>
+ 
+      <div class="flex">
+        <el-input
+          placeholder="Nơi đi"
+          v-model="from">
+        </el-input>
 
-      <!-- <el-autocomplete
-        class="inline-input"
-        v-model="name"
-        :fetch-suggestions="querySearch"
-        placeholder="Tên khách"
-        @select="handleSelect"
-      ></el-autocomplete> -->
+        <el-input
+          placeholder="Nơi đến"
+          v-model="to">
+        </el-input>
+      </div>
+      
 
       
-      <el-input
-        placeholder="Nơi đi"
-        v-model="from"
-        >
-      </el-input>
 
-      <el-input
-        placeholder="Nơi đến"
-        v-model="to"
-        >
-      </el-input>
+      <div class="flex">
+        <el-input
+          placeholder="Km"
+          v-model="kilometermfinish">
+        </el-input>
 
-      <el-input
-        type="number"
-        placeholder="Chuyến"
-        v-model="trip"
-        >
-      </el-input>
+        <el-input
+          type="number"
+          placeholder="Chuyến"
+          v-model="trip">
+        </el-input>
+      </div>
+        <el-input
+          type="number"
+          placeholder="Tấn"
+          v-model="ton">
+        </el-input>
 
+        <el-input
+          type="number"
+          placeholder="Đơn giá"
+          v-model="unitPrice">
+        </el-input>
 
-      <el-input
-        placeholder="Tấn"
-        type="number"
-        v-model="ton"
-        >
-      </el-input>
+        <el-input
+          type="number"
+          placeholder="Phí"
+          v-model="extraCost">
+        </el-input>
 
-      <el-input
-        placeholder="Đơn giá"
-        type="number"
-        v-model="unitPrice"
-        >
-      </el-input>
+      <div class="flex">
+        <el-input
+          placeholder="Chành"
+          v-model="push">
+        </el-input>
 
-      <el-input
-        placeholder="Phí"
-        type="number"
-        v-model="extraCost"
-        >
-      </el-input>
+        <el-input
+          placeholder="Bốc xếp"
+          v-model="carry">
+        </el-input>
+      </div>
+        
+      
+      
 
-      <el-input
-        placeholder="Dầu"
-        type="number"
-        v-model="oil"
-        >
-      </el-input>
+      <div class="flex">
+        <el-input
+          placeholder="Dầu"
+          type="number"
+          v-model="oil">
+        </el-input>
 
-      <el-input
-        type="number"
-        placeholder="Số Km"
-        v-model="kilometer"
-        >
-      </el-input>
+        <el-input
+          type="number"
+          placeholder="Số Km"
+          v-model="kilometer">
+        </el-input>
+      </div>
 
-      <el-input
-        type="number"
-        placeholder="Công an"
-        v-model="police"
-        >
-      </el-input>
+      <div class="flex">
+        <el-input
+          placeholder="Mới"
+          v-model="kmnew">
+        </el-input>
+
+        <el-input
+          placeholder="Cũ"
+          v-model="kmold">
+        </el-input>
+      </div>
+
+      <div class="flex">
+        <el-input
+          placeholder="Vá xe"
+          v-model="patch">
+        </el-input>
+
+        <el-input
+          placeholder="Sửa xe"
+          v-model="repair">
+        </el-input>
+
+        <el-input
+          placeholder="Rửa xe"
+          v-model="wash">
+        </el-input>
+
+        <el-input
+          type="number"
+          placeholder="Công an"
+          v-model="police">
+        </el-input>
+      </div>
+
+      
 
       <el-input
         type="number"
         placeholder="Thành tiền"
         v-model="total"
         >
+      </el-input>
+
+      <el-input
+        placeholder="Nợ/Thu"
+        v-model="owe">
       </el-input>
 
       <el-input
@@ -130,11 +174,54 @@
       <el-input
         placeholder="Tài xế"
         v-model="driver"
-        type="text"
-        >
+        type="text">
       </el-input>
 
-      <el-button type="success" icon="el-icon-check" @click="createEmployee(date, day, licensePlate, name, from, to , kilometer, trip, ton, unitPrice, extraCost, oil, police, total, salary, driver)"> Thêm </el-button>
+      <el-input
+        placeholder="Chi tiết"
+        v-model="details">
+      </el-input>
+
+      <div class="flex">
+        <el-input
+          placeholder="Tài nghỉ"
+          v-model="notwork">
+        </el-input>
+
+        <el-input
+          placeholder="Tài trực"
+          v-model="work">
+        </el-input>
+      </div>
+
+      <div class="flex">
+        <el-input
+          placeholder="Chi xe"
+          v-model="spendingcar">
+        </el-input>
+
+        <el-input
+          placeholder="Tiền chi xe"
+          v-model="spendingmoneyforcar">
+        </el-input>
+      </div>
+
+      <div class="flex">
+        <el-input 
+          placeholder="Chi ngoài"
+          v-model="spendingother">
+        </el-input>
+
+        <el-input
+          placeholder="Tiền chi"
+          v-model="spendingmoneyforother">
+        </el-input>
+      </div>
+      
+     
+
+      <el-button type="success" icon="el-icon-check" @click="createEmployee(date, day, licensePlate, name, from, to , kilometer, trip, ton, unitPrice, extraCost, oil, police, total, salary, driver, kilometermfinish, 
+          push, carry, kmnew, kmold, patch, repair, wash, owe, details, work, notwork, spendingcar, spendingmoneyforcar, spendingother, spendingmoneyforother)"> Thêm </el-button>
       
 
       <el-button slot="reference" type="success" icon="el-icon-edit" class="createButton">Create Itinerary</el-button
@@ -166,6 +253,12 @@ export default {
             licensePlate: "",
             extraCost: "",
             unitPrice: "",
+            kilometermfinish: "",
+            push: "",
+            carry: "",
+            kmnew: "", 
+            kmold: "", 
+            patch: "", repair: "", wash: "", owe: "", details: "", work: "", notwork: "", spendingcar: "", spendingmoneyforcar: "", spendingother: "", spendingmoneyforother: "",
             itinerary: [],
             search: "",
             options: [
@@ -219,7 +312,8 @@ export default {
         }
     },
     methods: {
-        createEmployee(date, day, licensePlate, name, from, to , kilometer, trip, ton, unitPrice, extraCost, oil, police, total, salary, driver) {
+        createEmployee(date, day, licensePlate, name, from, to , kilometer, trip, ton, unitPrice, extraCost, oil, police, total, salary, driver, kilometermfinish, 
+          push, carry, kmnew, kmold, patch, repair, wash, owe, details, work, notwork, spendingcar, spendingmoneyforcar, spendingother, spendingmoneyforother) {
         if (name != "" && date != "" && licensePlate != "" && from != "" && to != "" && kilometer != "" && trip != ""
                                 && ton != "" && unitPrice != "" && extraCost != "" && oil != "" && police != "" && total != "" && salary != "" && driver != "") {
         
@@ -227,7 +321,10 @@ export default {
           case '51C 60596':
             db.collection("51C 60596")
             .add({ date: date, name: name, day: day, licensePlate: licensePlate, from: from, to: to, kilometer: kilometer, trip: trip
-                                  ,ton: ton, unitPrice: unitPrice, extraCost: extraCost, oil: oil, police: police, total: total, salary: salary, driver: driver})
+                  ,ton: ton, unitPrice: unitPrice, extraCost: extraCost, oil: oil, police: police, total: total, salary: salary, driver: driver,
+                  kilometermfinish: kilometermfinish, push: push, carry: carry, kmnew: kmnew, kmold: kmold, 
+                  patch: patch, repair: repair, wash: wash, owe: owe, details: details, work: work, notwork: notwork, 
+                  spendingcar: spendingcar, spendingmoneyforcar: spendingmoneyforcar, spendingother: spendingother, spendingmoneyforother: spendingmoneyforother})
             .then(() => {
               console.log("Document successfully written!");
             })
@@ -239,7 +336,10 @@ export default {
           case '51D 46295':
             db.collection("51D 46295")
             .add({ date: date, name: name, day: day, licensePlate: licensePlate, from: from, to: to, kilometer: kilometer, trip: trip
-                                  ,ton: ton, unitPrice: unitPrice, extraCost: extraCost, oil: oil, police: police, total: total, salary: salary, driver: driver})
+                  ,ton: ton, unitPrice: unitPrice, extraCost: extraCost, oil: oil, police: police, total: total, salary: salary, driver: driver,
+                  kilometermfinish: kilometermfinish, push: push, carry: carry, kmnew: kmnew, kmold: kmold, 
+                  patch: patch, repair: repair, wash: wash, owe: owe, details: details, work: work, notwork: notwork, 
+                  spendingcar: spendingcar, spendingmoneyforcar: spendingmoneyforcar, spendingother: spendingother, spendingmoneyforother: spendingmoneyforother})
             .then(() => {
               console.log("Document successfully written!");
             })
@@ -251,7 +351,10 @@ export default {
           case '50H 07677':
             db.collection("50H 07677")
             .add({ date: date, name: name, day: day, licensePlate: licensePlate, from: from, to: to, kilometer: kilometer, trip: trip
-                                  ,ton: ton, unitPrice: unitPrice, extraCost: extraCost, oil: oil, police: police, total: total, salary: salary, driver: driver})
+                  ,ton: ton, unitPrice: unitPrice, extraCost: extraCost, oil: oil, police: police, total: total, salary: salary, driver: driver,
+                  kilometermfinish: kilometermfinish, push: push, carry: carry, kmnew: kmnew, kmold: kmold, 
+                  patch: patch, repair: repair, wash: wash, owe: owe, details: details, work: work, notwork: notwork, 
+                  spendingcar: spendingcar, spendingmoneyforcar: spendingmoneyforcar, spendingother: spendingother, spendingmoneyforother: spendingmoneyforother})
             .then(() => {
               console.log("Document successfully written!");
             })
@@ -263,7 +366,10 @@ export default {
           case 'xe ngoài':
             db.collection("xe ngoai")
             .add({ date: date, name: name, day: day, licensePlate: licensePlate, from: from, to: to, kilometer: kilometer, trip: trip
-                                  ,ton: ton, unitPrice: unitPrice, extraCost: extraCost, oil: oil, police: police, total: total, salary: salary, driver: driver})
+                  ,ton: ton, unitPrice: unitPrice, extraCost: extraCost, oil: oil, police: police, total: total, salary: salary, driver: driver,
+                  kilometermfinish: kilometermfinish, push: push, carry: carry, kmnew: kmnew, kmold: kmold, 
+                  patch: patch, repair: repair, wash: wash, owe: owe, details: details, work: work, notwork: notwork, 
+                  spendingcar: spendingcar, spendingmoneyforcar: spendingmoneyforcar, spendingother: spendingother, spendingmoneyforother: spendingmoneyforother})
             .then(() => {
               console.log("Document successfully written!");
             })
@@ -274,7 +380,9 @@ export default {
         }
        
           this.name = "", this.date = "", this.day = "", this.from = "", this.to = "", this.kilometer = "", this.trip = "", this.ton = "", this.oil = "", 
-          this.police = "", this.total = "", this.salary = "", this.driver = "", this.licensePlate = "", this.extraCost = "", this.unitPrice = ""
+          this.police = "", this.total = "", this.salary = "", this.driver = "", this.licensePlate = "", this.extraCost = "", this.unitPrice = "", this.kilometermfinish = "",
+          this.push = "", this.carry = "", this.kmnew = "", this.kmold = "", this.patch = "", this.repair = "", this.wash = "", this.owe = "", this.details = "", this.work = "",
+          this.notwork = "", this.spendingcar = "", this.spendingmoneyforcar = "", this.spendingother = "", this.spendingmoneyforother = ""
 
           
       }
@@ -284,9 +392,7 @@ export default {
 </script>
 
 <style>
-.createButton{
-  padding: 0;
-  margin: 0;
+.flex{
+  display: flex;
 }
-
 </style>
