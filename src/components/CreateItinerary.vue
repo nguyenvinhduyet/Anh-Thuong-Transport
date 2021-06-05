@@ -222,7 +222,7 @@
      
 
       <el-button type="success" icon="el-icon-check" @click="createEmployee(date, day, licensePlate, name, from, to , kilometer, trip, ton, unitPrice, extraCost, oil, police, total, salary, driver, kilometermfinish, 
-          push, carry, kmnew, kmold, patch, repair, wash, owe, details, work, notwork, spendingcar, spendingmoneyforcar, spendingother, spendingmoneyforother)"> Thêm </el-button>
+          push, carry, kmnew, kmold, patch, repair, wash, owe, details, work, notwork, spendingcar, spendingmoneyforcar, spendingother, spendingmoneyforother)"> Done </el-button>
       
 
       <el-button slot="reference" type="success" icon="el-icon-edit" class="createButton">Create Itinerary</el-button

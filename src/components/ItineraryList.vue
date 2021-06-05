@@ -1,20 +1,20 @@
 <template>
   <div>
       <div>
-      <el-table v-model="search" :span-method="colspanMethod" :height="tableHeight"
+      <el-table v-model="search" :span-method="colspanMethod" height="980"
       :data="itinerary.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
       style="width: 100%;">
 
-      <el-table-column label="Ngày" prop="date"> </el-table-column>
-      <el-table-column label="Thứ" prop="day"> </el-table-column>
-      <el-table-column label="Số xe" prop="licensePlate"> </el-table-column>
-      <el-table-column label="Khách hàng" prop="name"> </el-table-column>
+      <el-table-column fixed label="Ngày" prop="date" width="100"> </el-table-column>
+      <el-table-column fixed label="Thứ" prop="day"> </el-table-column>
+      <el-table-column fixed label="Số xe" prop="licensePlate" width="100"> </el-table-column>
+      <el-table-column label="Khách hàng" prop="name" width="130"> </el-table-column>
       <el-table-column label="Nơi đi" prop="from"> </el-table-column>
       <el-table-column label="Nơi đến" prop="to"> </el-table-column>
       <el-table-column label="km" prop="kilometermfinish"> </el-table-column>
       <el-table-column label="Chuyến" prop="trip"> </el-table-column>
       <el-table-column label="Tấn" prop="ton"> </el-table-column>
-      <el-table-column label="Đơn giá" prop="unitPrice"> </el-table-column>
+      <el-table-column label="Đơn giá" prop="unitPrice" width="100"> </el-table-column>
       <el-table-column label="Phí" prop="extraCost"> </el-table-column>
       <el-table-column label="Chành" prop="push"> </el-table-column>
       <el-table-column label="Bốc xếp" prop="carry"> </el-table-column>
@@ -28,7 +28,7 @@
       <el-table-column label="Rửa" prop="wash"> </el-table-column>
 
       <el-table-column label="Công an" prop="police"> </el-table-column>
-      <el-table-column label="Thành tiền" prop="total" width="100"> </el-table-column>
+      <el-table-column label="Thành tiền" prop="total" width="110"> </el-table-column>
       <el-table-column label="Nơ/thu" prop="owe"> </el-table-column>
       <el-table-column label="Lương" prop="salary"> </el-table-column>
       <el-table-column label="Tài xế" prop="driver"> </el-table-column>
@@ -36,9 +36,9 @@
       <el-table-column label="Nghỉ" prop="work"> </el-table-column>
       <el-table-column label="Trực" prop="notwork"> </el-table-column>
       <el-table-column label="Chi xe" prop="spendingcar"> </el-table-column>
-      <el-table-column label="Số tiền chi xe" prop="spendingmoneyforcar"> </el-table-column>
-      <el-table-column label="Chi ngoài" prop="spendingother"> </el-table-column>
-      <el-table-column label="Số tiền chi" prop="spendingmoneyforother"> </el-table-column>
+      <el-table-column label="Tiền chi xe" prop="spendingmoneyforcar" width="100"> </el-table-column>
+      <el-table-column label="Chi ngoài" prop="spendingother" width="100"> </el-table-column>
+      <el-table-column label="Tiền chi" prop="spendingmoneyforother"> </el-table-column>
 
 
 
@@ -242,22 +242,17 @@
               v-model="scope.row.spendingmoneyforother"
             ></el-input>
           </div>
+            <el-button type="primary" icon="el-icon-check" @click="updateEmployee(scope.row.id, scope.row.name, scope.row.date, scope.row.day, scope.row.licensePlate, scope.row.from, scope.row.to , scope.row.kilometer, scope.row.trip, scope.row.ton, scope.row.unitPrice, scope.row.extraCost, scope.row.oil, scope.row.police, scope.row.total, scope.row.salary, scope.row.driver, scope.row.kilometermfinish,
+            scope.row.kilometermfinish, scope.row.push, scope.row.carry, scope.row.kmnew, scope.row.kmold, scope.row.patch, scope.row.repair, scope.row.wash, scope.row.owe, scope.row.details, scope.row.notwork, scope.row.work, scope.row.spendingcar, scope.row.spendingmoneyforcar, scope.row.spendingother, scope.row.spendingmoneyforother)"> 
+              Done
+            </el-button>
 
-            
-
-            <el-button type="success" @click="updateEmployee(scope.row.id, scope.row.name, scope.row.date, scope.row.day, scope.row.licensePlate, scope.row.from, scope.row.to , scope.row.kilometer, scope.row.trip, scope.row.ton, scope.row.unitPrice, scope.row.extraCost, scope.row.oil, scope.row.police, scope.row.total, scope.row.salary, scope.row.driver, scope.row.kilometermfinish,
-            scope.row.kilometermfinish, scope.row.push, scope.row.carry, scope.row.kmnew, scope.row.kmold, scope.row.patch, scope.row.repair, scope.row.wash, scope.row.owe, scope.row.details, scope.row.notwork, scope.row.work, scope.row.spendingcar, scope.row.spendingmoneyforcar, scope.row.spendingother, scope.row.spendingmoneyforother)"> Edit </el-button>
-
-            
-
-            <el-button size="mini" slot="reference">Edit</el-button>
+            <el-button type="primary" size="default" slot="reference" class="edit" icon="el-icon-edit-outline"></el-button>
           </el-popover>
-          <el-button
-            size="mini"
-            type="danger"
-            @click="deleteEmployee(scope.row.id)"
-            >Delete</el-button
-          >
+          <el-button size="default" type="danger" @click="deleteEmployee(scope.row.id)" class="delete" icon="el-icon-delete">
+          </el-button>
+
+       
         </template>
       </el-table-column>
     </el-table>
